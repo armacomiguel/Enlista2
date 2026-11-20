@@ -1,18 +1,66 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { Stack } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { View, ActivityIndicator } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import {
+  useFonts,
+  PlusJakartaSans_400Regular,
+  PlusJakartaSans_600SemiBold,
+  PlusJakartaSans_700Bold,
+} from '@expo-google-fonts/plus-jakarta-sans';
+import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { onAuthChange, getCurrentUser } from '@/lib/firebase/auth';
+import { Colors } from '@/constants/theme';
 
-SplashScreen.preventAutoHideAsync();
+export default function RootLayout() {
+  const [fontsLoaded] = useFonts({
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_600SemiBold,
+    PlusJakartaSans_700Bold,
+    Inter_400Regular,
+    Inter_500Medium,
+  });
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const [loading, setLoading] = useState(true);
+  const [, setUser] = useState(getCurrentUser());
+
+  useEffect(() => {
+    const unsubscribe = onAuthChange((user) => {
+      setUser(user);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
+
+  if (!fontsLoaded || loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: Colors.background,
+        }}
+      >
+        <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
+  }
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <View style={{ flex: 1, backgroundColor: Colors.background }}>
+      <StatusBar style="light" />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="login" />
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="platillos" />
+        <Stack.Screen name="platillos/crear" />
+        <Stack.Screen name="platillos/[id]" />
+        <Stack.Screen name="inventario" />
+        <Stack.Screen name="inventario/agregar" />
+        <Stack.Screen name="inventario/[id]/editar" />
+      </Stack>
+    </View>
   );
 }
