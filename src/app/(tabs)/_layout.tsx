@@ -19,7 +19,7 @@ export default function TabsLayout() {
           paddingTop: 8,
         },
         tabBarActiveTintColor: Colors.primary,
-        tabBarInactiveTintColor: '#666',
+        tabBarInactiveTintColor: Colors.tabBarInactive,
         tabBarLabelStyle: {
           fontSize: 11,
           fontWeight: '600',
@@ -31,7 +31,7 @@ export default function TabsLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
+            <Ionicons name="home" size={size} color={color as string} />
           ),
         }}
       />
@@ -40,7 +40,7 @@ export default function TabsLayout() {
         options={{
           title: 'Platillos',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="restaurant" size={size} color={color} />
+            <Ionicons name="restaurant" size={size} color={color as string} />
           ),
         }}
       />
@@ -49,7 +49,7 @@ export default function TabsLayout() {
         options={{
           title: 'A comer',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="calendar" size={size} color={color} />
+            <Ionicons name="calendar" size={size} color={color as string} />
           ),
         }}
       />
@@ -58,7 +58,7 @@ export default function TabsLayout() {
         options={{
           title: 'Perfil',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" size={size} color={color} />
+            <Ionicons name="person" size={size} color={color as string} />
           ),
         }}
       />

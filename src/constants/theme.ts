@@ -1,18 +1,22 @@
 export const Colors = {
-  primary: '#FF6B35',
-  primaryDark: '#E55A2B',
-  secondary: '#2EC4B6',
-  accent: '#FFD166',
-  background: '#1A1A2E',
-  surface: '#252542',
-  surfaceLight: '#2D2D4A',
-  textPrimary: '#F5F5F7',
-  textSecondary: '#A0A0B8',
+  // Verde principal: botones, acciones, navegación, destacados
+  primary: '#16A34A',
+  primaryDark: '#15803D',
+  // Tercer color (ámbar): acento cálido para acciones secundarias y estados "falta"
+  secondary: '#F59E0B',
+  accent: '#F59E0B',
+  // Base blanca dominante
+  background: '#F8FAFC',
+  surface: '#FFFFFF',
+  surfaceLight: '#F1F5F9',
+  textPrimary: '#0F172A',
+  textSecondary: '#64748B',
   error: '#EF4444',
-  success: '#22C55E',
-  border: '#3A3A5C',
-  tabBar: '#12121F',
-  tabBarBorder: '#0D0D18',
+  success: '#16A34A',
+  border: '#E2E8F0',
+  tabBar: '#FFFFFF',
+  tabBarBorder: '#E2E8F0',
+  tabBarInactive: '#94A3B8',
 };
 
 export const Spacing = {

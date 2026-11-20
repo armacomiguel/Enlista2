@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     color: Colors.error,
   },
   neutral: {
-    backgroundColor: '#F3F4F6',
+    backgroundColor: '#F1F5F9',
   },
   neutralText: {
     color: Colors.textSecondary,
